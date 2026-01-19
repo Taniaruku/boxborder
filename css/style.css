@@ -1,0 +1,131 @@
+:root{
+	--main: aqua;
+	--white:hsl(0, 0%, 95%);
+	--light:hsl(0, 0%, 50%);
+	--bg:hsl(0, 0%, 10%);
+}
+
+*{
+	box-sizing: border-box;
+	font-family: "Merienda", cursive;
+	margin: 0;
+	padding:0;
+	border:0;
+	outline:0;
+	text-decoration: none;
+	transition: .2s linear;
+	text-transform: capitalize;
+}
+
+
+
+body{
+	background-color: var(--bg);
+}
+
+.box-container{
+	margin: 0 auto;
+	max-width: 1000px;
+	padding: 3rem 1rem;
+	display:grid;
+	grid-template-columns: repeat(auto-fit, 20rem);
+	align-items: center;
+	justify-content: center;
+}
+
+
+.box-container .box{
+	border-radius: 1rem;
+	overflow: hidden;
+	padding: 1rem;
+	position: relative;
+}
+
+
+.box-container .box:hover{
+	background-color: var(--white);
+	transform: scale(1.1);
+	box-shadow: 0 .5rem 1.2rem hsla(0, 0%, 30%, 1);
+	z-index: 1000;
+}
+
+.box-container .box:hover::before{
+
+content:'';
+position:absolute;
+inset:-20%;
+background: conic-gradient(var(--main) 40deg, transparent 100deg);
+animation: rotate 2s linear infinite, huecolor 2s linear infinite;
+}
+
+@keyframes rotate{
+	from{ transform: rotate(0deg); }
+	to{ transform: rotate(-360deg); }
+}
+
+
+@keyframes huecolor{
+	from{ filter: hue-rotate(0deg); }
+	to{ filter: hue-rotate(360deg); }
+}
+
+
+.box-container .box .content{
+	background-color: var(--bg);
+	border-radius: 1rem;
+	padding:2rem;
+	position:relative;
+}
+
+
+.box-container .box:hover .content{
+	text-align:center ;
+}
+
+
+.box-container .box .content img{
+	height: 5rem;
+	width:5rem;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 1rem;
+}
+
+.box-container .box .content h3{
+	color:var(--white);
+	font-size: 1.5rem;
+}
+
+
+.box-container .box .content p{
+	color:var(--light);
+	font-size: 1rem;
+	line-height: 1.2;
+	padding:1rem 0;
+}
+
+
+.box-container .box .content a{
+	display:inline-block;
+	margin-top: .5rem;
+	font-size: 1.2rem;
+	color:var(--white);
+}
+
+
+.box-container .box .content a:hover{
+	text-decoration: underline;
+	color:var(--main);
+}
+
+
+.box-container:hover ~ .dim-overlay{
+	opacity: 1;
+}
+.dim-overlay{
+	position: fixed;
+	inset:0%;
+	background: hsla(0, 0%, .5);
+	pointer-events: none;
+	z-index: 999;
+}
